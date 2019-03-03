@@ -8,12 +8,12 @@ using System.IO;
 
 public class DialogueParser : MonoBehaviour {
 
-	List<DialogueLine> lines = new List<DialogueLine>(); 
+	List<DialogueLine> lines;
 
 	struct DialogueLine {
-		string name;
-		string content;
-		int pose;
+		public string name;
+		public string content;
+		public int pose;
 
 		public DialogueLine(string n, string c, int p){
 			name = n;
@@ -29,12 +29,31 @@ public class DialogueParser : MonoBehaviour {
 		sceneName = Regex.Replace (sceneName, "[^0-9]", "");
 		file += sceneName + ".txt";
 
+		lines = new List<DialogueLine> ();
 		LoadDialogue (file);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
+	}
+
+	public string GetName (int lineNummber) {
+		if (lineNummber < lines.Count)
+			return lines [lineNummber].name;
+		return "";
+	}
+
+	public string GetContent (int lineNumber) {
+		if (lineNumber < lines.Count)
+			return lines [lineNumber].content;
+		return "";
+	}
+
+	public int GetPose (int lineNumber) {
+		if (lineNumber < lines.Count)
+			return lines [lineNumber].pose;
+		return 0;
 	}
 
 	void LoadDialogue(string filename) {
