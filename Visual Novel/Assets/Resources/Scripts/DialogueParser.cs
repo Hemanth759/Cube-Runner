@@ -8,7 +8,7 @@ using System.IO;
 
 public class DialogueParser : MonoBehaviour {
 
-	List<DialogueLine> lines; 
+	List<DialogueLine> lines = new List<DialogueLine>(); 
 
 	struct DialogueLine {
 		string name;
@@ -42,14 +42,15 @@ public class DialogueParser : MonoBehaviour {
 		string line;
 		StreamReader fileptr = new StreamReader (file);
 		using (fileptr) {
-			while (fileptr != null) {
-				line = fileptr.ReadLine ();
+			while ((line = fileptr.ReadLine ()) != null) {
+				
 				if (line != null) {
 					string[] line_values = line.Split ('|');
 					DialogueLine line_entry = new DialogueLine (line_values [0], line_values [1], int.Parse (line_values [2]));
 					lines.Add (line_entry);
 				}
 			}
+			fileptr.Close ();
 		}
 	}
 }
