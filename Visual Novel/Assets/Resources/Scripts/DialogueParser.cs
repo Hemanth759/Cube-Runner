@@ -9,6 +9,7 @@ using System.IO;
 public class DialogueParser : MonoBehaviour {
 
 	List<DialogueLine> lines;
+	List<Sprite> Images;
 
 	struct DialogueLine {
 		public string name;
@@ -31,6 +32,9 @@ public class DialogueParser : MonoBehaviour {
 
 		lines = new List<DialogueLine> ();
 		LoadDialogue (file);
+
+		Images = new List<Sprite> ();
+		LoadImages ();
 	}
 	
 	// Update is called once per frame
@@ -50,10 +54,10 @@ public class DialogueParser : MonoBehaviour {
 		return "";
 	}
 
-	public int GetPose (int lineNumber) {
+	public Sprite GetPose (int lineNumber) {
 		if (lineNumber < lines.Count)
-			return lines [lineNumber].pose;
-		return 0;
+			return Images [lines [lineNumber].pose];
+		return null;
 	}
 
 	void LoadDialogue(string filename) {
@@ -70,6 +74,17 @@ public class DialogueParser : MonoBehaviour {
 				}
 			}
 			fileptr.Close ();
+		}
+	}
+
+	void LoadImages () {
+		for (int i = 0; i < lines.Count; ++i) {
+			string imageName = lines [i].name;
+			Sprite image = (Sprite)Resources.Load (imageName, typeof(Sprite));
+			if (!Images.Contains (image)) {
+				Images.Add (image);
+				Debug.Log (image);
+			}
 		}
 	}
 }
