@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Text.RegularExpressions;
+using UnityEngine.SceneManagement;
 
 public class Open_Scene : MonoBehaviour {
 
@@ -21,6 +22,6 @@ public class Open_Scene : MonoBehaviour {
 		int levelNumber = int.Parse (buttonNumber);
 		Debug.Log (levelNumber);
 
-		Application.LoadLevel ("Scene " + levelNumber.ToString ());
+		SceneManager.LoadScene ("Scene " + levelNumber.ToString ());
 	}
 }
