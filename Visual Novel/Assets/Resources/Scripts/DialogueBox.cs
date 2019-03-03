@@ -27,6 +27,6 @@ public class DialogueBox : MonoBehaviour {
 	}
 
 	void OnGUI() {
-		dialogue = GUI.TextField (new Rect (100, 400, 500, 200), dialogue, customstyle);
+		dialogue = GUI.TextField (new Rect (100, 200, 500, 200), dialogue, customstyle);
 	}
 }
