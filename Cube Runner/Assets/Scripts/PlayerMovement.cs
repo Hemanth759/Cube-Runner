@@ -23,5 +23,11 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForce(-sidewaysForce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
         }
+
+        if(rb.transform.position.y < -2 || rb.transform.position.y > 2)
+        {
+            this.enabled = false;
+            FindObjectOfType<GameManagerScript>().EndGame();
+        }
     }
 }
