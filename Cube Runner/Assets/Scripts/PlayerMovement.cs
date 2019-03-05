@@ -4,7 +4,7 @@ public class PlayerMovement : MonoBehaviour
 {
     // This is reference to the rigidBody component called rb
 	public Rigidbody rb;
-    public float forwardForce = 2000f;
+    public float forwardForce = 500f;
     public float sidewaysForce = 500f;
 
     // Update is called once per frame
@@ -16,12 +16,12 @@ public class PlayerMovement : MonoBehaviour
         // Movement functions here
         if (Input.GetKey("d"))
         {
-            rb.AddForce(sidewaysForce * Time.deltaTime, 0, 0);
+            rb.AddForce(sidewaysForce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
         }
 
         if(Input.GetKey("a"))
         {
-            rb.AddForce(-sidewaysForce * Time.deltaTime, 0, 0);
+            rb.AddForce(-sidewaysForce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
         }
     }
 }
