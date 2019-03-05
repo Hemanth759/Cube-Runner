@@ -6,6 +6,12 @@ public class GameManagerScript : MonoBehaviour
     bool GameHasEnded = false;
 
     public float RestartDelay = 2f;
+    public GameObject CompleteLevelUI;
+
+    public void GameComplete()
+    {
+        CompleteLevelUI.SetActive(true);
+    }
 
     public void EndGame()
     {
